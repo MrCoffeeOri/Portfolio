@@ -1,4 +1,140 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+@-webkit-keyframes Sizer {
+  0% {
+    -webkit-transform: scale(0, 0);
+            transform: scale(0, 0);
+  }
+  50% {
+    -webkit-transform: scale(1.1, 1.1);
+            transform: scale(1.1, 1.1);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+}
+@keyframes Sizer {
+  0% {
+    -webkit-transform: scale(0, 0);
+            transform: scale(0, 0);
+  }
+  50% {
+    -webkit-transform: scale(1.1, 1.1);
+            transform: scale(1.1, 1.1);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+}
+
+@-webkit-keyframes TopBarSlide {
+  from {
+    -webkit-transform: translate(-1000px);
+            transform: translate(-1000px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes TopBarSlide {
+  from {
+    -webkit-transform: translate(-1000px);
+            transform: translate(-1000px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes TitleSlide {
+  from {
+    -webkit-transform: translate(-1000px);
+            transform: translate(-1000px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes TitleSlide {
+  from {
+    -webkit-transform: translate(-1000px);
+            transform: translate(-1000px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes Rainbow {
+  0% {
+    border: 2px solid #42429e;
+  }
+  20% {
+    border: 2px solid darkcyan;
+  }
+  40% {
+    border: 2px solid darkblue;
+  }
+  60% {
+    border: 2px solid darkgray;
+  }
+  80% {
+    border: 2px solid darkmagenta;
+  }
+  100% {
+    border: 2px solid darkorange;
+  }
+}
+
+@keyframes Rainbow {
+  0% {
+    border: 2px solid #42429e;
+  }
+  20% {
+    border: 2px solid darkcyan;
+  }
+  40% {
+    border: 2px solid darkblue;
+  }
+  60% {
+    border: 2px solid darkgray;
+  }
+  80% {
+    border: 2px solid darkmagenta;
+  }
+  100% {
+    border: 2px solid darkorange;
+  }
+}
+
+.TopBar {
+  opacity: 0;
+  -webkit-animation: TopBarSlide 700ms forwards;
+          animation: TopBarSlide 700ms forwards;
+}
+
+.title-box {
+  opacity: 0;
+  -webkit-animation: TitleSlide 800ms forwards 700ms;
+          animation: TitleSlide 800ms forwards 700ms;
+}
+
+.title:hover {
+  -webkit-animation: Rainbow 8s infinite 5s;
+          animation: Rainbow 8s infinite 5s;
+}
+
+main {
+  opacity: 0;
+  -webkit-animation: Sizer 800ms forwards 1500ms;
+          animation: Sizer 800ms forwards 1500ms;
+}
+
 * {
   font-family: 'Nunito', sans-serif;
   color: #42429e;
@@ -63,17 +199,18 @@ ul {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  -webkit-transition: 300ms;
-  transition: 300ms;
+  border: 2px solid #42429e;
   -webkit-box-shadow: 20px 20px 20px #010101;
           box-shadow: 20px 20px 20px #010101;
   width: 70%;
   padding: 10px 0 10px 5px;
-  border-radius: 5rem;
+  border-radius: 6rem;
   background-color: #010101;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-transition: 300ms;
+  transition: 300ms;
 }
 
 .title h1 {
@@ -97,10 +234,11 @@ ul {
 }
 
 #Knowledges {
+  border: 2px solid #42429e;
   -webkit-box-shadow: 20px 20px 20px #010101;
           box-shadow: 20px 20px 20px #010101;
   background-color: #010101;
-  padding: 15px;
+  padding: 10px 15px 25px 15px;
   margin: 100px 10px;
   border-radius: .5rem;
   text-align: center;
@@ -134,10 +272,10 @@ ul {
 #Knowledges article:hover {
   -webkit-transform: scale(1.2, 1.2);
           transform: scale(1.2, 1.2);
-  background-color: #010101;
+  background-color: inherit;
 }
 
-#Knowledges h2 {
+#Knowledges .Knowledges-title {
   margin-top: 0;
   margin-bottom: 20px;
 }
