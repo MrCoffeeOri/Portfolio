@@ -1,1 +1,144 @@
-/* No CSS *//*# sourceMappingURL=index.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+* {
+  font-family: 'Nunito', sans-serif;
+  color: #42429e;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0e0e0e;
+}
+
+ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 40vw;
+  list-style: none;
+  margin: 0;
+}
+
+.TopBar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #010101;
+}
+
+.TopBar a {
+  border-radius: 4rem;
+  font-weight: bolder;
+  text-decoration: none;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+}
+
+.TopBar a:hover {
+  color: #6060bd;
+  font-size: 1.3pc;
+}
+
+.title-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 50px;
+}
+
+.title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  -webkit-box-shadow: 20px 20px 20px #010101;
+          box-shadow: 20px 20px 20px #010101;
+  width: 70%;
+  padding: 10px 0 10px 5px;
+  border-radius: 5rem;
+  background-color: #010101;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.title h1 {
+  margin: 0;
+}
+
+@media screen and (max-width: 1205px) {
+  .title h1 {
+    font-size: 1.4pc;
+  }
+}
+
+.title img {
+  width: 16vw;
+  border-radius: 50%;
+}
+
+.title:hover {
+  -webkit-transform: scale(1.1, 1.1);
+          transform: scale(1.1, 1.1);
+}
+
+#Knowledges {
+  -webkit-box-shadow: 20px 20px 20px #010101;
+          box-shadow: 20px 20px 20px #010101;
+  background-color: #010101;
+  padding: 15px;
+  margin: 100px 10px;
+  border-radius: .5rem;
+  text-align: center;
+}
+
+#Knowledges .card-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#Knowledges img {
+  width: 100px;
+  height: 100px;
+}
+
+#Knowledges article {
+  background-color: #222222;
+  border-radius: .5rem;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  padding: 20px;
+}
+
+#Knowledges article h2 {
+  margin: 0;
+}
+
+#Knowledges article:hover {
+  -webkit-transform: scale(1.2, 1.2);
+          transform: scale(1.2, 1.2);
+  background-color: #010101;
+}
+
+#Knowledges h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+/*# sourceMappingURL=index.css.map */

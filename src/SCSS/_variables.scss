@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
+$mainColor: rgb(14, 14, 14);
+$secondaryColor: darken($mainColor,  5);
+$fontColor: rgb(66, 66, 158);
+
+* {
+    font-family: 'Nunito', sans-serif;
+    color: $fontColor;
+}
+
+@mixin FlexSets($justyContent) {
+    display: flex;
+    justify-content: $justyContent;
+}

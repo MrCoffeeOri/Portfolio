@@ -1,0 +1,94 @@
+@import "variables";
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: $mainColor;
+}
+
+// Header
+ul {
+    @include FlexSets(space-between);
+    width: 40vw;
+    list-style: none;
+    margin: 0;
+}
+
+.TopBar {
+    @include FlexSets(space-around);
+    a {
+        border-radius: 4rem;
+        font-weight: bolder;
+        text-decoration: none;
+        transition: 300ms;
+        &:hover {
+            color: lighten($fontColor, 12);
+            font-size: 1.3pc;
+        }
+    }
+    align-items: center;
+    background-color: $secondaryColor;
+}
+
+.title-box {
+    @include FlexSets(center);
+    margin-top: 50px;
+}
+
+.title {
+    @include FlexSets(space-around);
+    transition: 300ms;
+    box-shadow: 20px 20px 20px darken($mainColor, 5);
+    width: 70%;
+    padding: 10px 0 10px 5px;
+    border-radius: 5rem;
+    background-color: $secondaryColor;
+    align-items: center;
+    h1 {
+        margin: 0;
+        @media screen and (max-width: 1205px){
+            font-size: 1.4pc;
+        }
+    }
+    img {
+        width: 16vw;
+        border-radius: 50%;
+    }
+    &:hover {
+        transform: scale(1.1, 1.1);
+    }
+}
+
+// Main
+#Knowledges {
+    box-shadow: 20px 20px 20px darken($mainColor, 5);
+    background-color: $secondaryColor;
+    padding: 15px;
+    margin: 100px 10px;
+    border-radius: .5rem;
+    text-align: center;
+    .card-box {
+        @include FlexSets(space-around);
+    }
+    img {
+        width: 100px;
+        height: 100px;
+    }
+    article {
+        background-color: lighten($mainColor, 8);
+        border-radius: .5rem;
+        transition: 300ms;
+        padding: 20px;
+        h2 {
+            margin: 0;
+        }
+        &:hover {
+            transform: scale(1.2, 1.2);
+            background-color: $secondaryColor;
+        }
+    }
+    h2 {
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+}
