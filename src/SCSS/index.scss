@@ -16,6 +16,8 @@ ul {
 
 .TopBar {
     @include FlexSets(space-around);
+    align-items: center;
+    background-color: $secondaryColor;
     a {
         border-radius: 4rem;
         font-weight: bolder;
@@ -26,8 +28,6 @@ ul {
             font-size: 1.3pc;
         }
     }
-    align-items: center;
-    background-color: $secondaryColor;
 }
 
 .title-box {
@@ -55,23 +55,21 @@ ul {
         width: 16vw;
         border-radius: 50%;
     }
-    &:hover {
-        transform: scale(1.1, 1.1);
-    }
+    &:hover {transform: scale(1.1, 1.1);}
 }
 
 // Main
-#Knowledges {
+article {
     border: 2px solid $fontColor;
     box-shadow: 20px 20px 20px darken($mainColor, 5);
     background-color: $secondaryColor;
+}
+
+#Knowledges {
     padding: 10px 15px 25px 15px;
     margin: 100px 10px;
-    border-radius: .5rem;
     text-align: center;
-    .card-box {
-        @include FlexSets(space-around);
-    }
+    .card-box {@include FlexSets(space-around);}
     img {
         width: 100px;
         height: 100px;
@@ -81,9 +79,7 @@ ul {
         border-radius: .5rem;
         transition: 300ms;
         padding: 20px;
-        h2 {
-            margin: 0;
-        }
+        h2 {margin: 0;}
         &:hover {
             transform: scale(1.2, 1.2);
             background-color: inherit;
@@ -91,6 +87,6 @@ ul {
     }
     .Knowledges-title {
         margin-top: 0;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
 }

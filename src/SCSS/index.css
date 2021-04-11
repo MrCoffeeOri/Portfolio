@@ -112,6 +112,20 @@
   }
 }
 
+@-webkit-keyframes Rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes Rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 .TopBar {
   opacity: 0;
   -webkit-animation: TopBarSlide 700ms forwards;
@@ -124,15 +138,20 @@
           animation: TitleSlide 800ms forwards 700ms;
 }
 
+main {
+  opacity: 0;
+  -webkit-animation: Sizer 800ms forwards 1500ms;
+          animation: Sizer 800ms forwards 1500ms;
+}
+
 .title:hover {
   -webkit-animation: Rainbow 8s infinite 5s;
           animation: Rainbow 8s infinite 5s;
 }
 
-main {
-  opacity: 0;
-  -webkit-animation: Sizer 800ms forwards 1500ms;
-          animation: Sizer 800ms forwards 1500ms;
+.card-box img:hover {
+  -webkit-animation: Rotate 1s 2s;
+          animation: Rotate 1s 2s;
 }
 
 * {
@@ -233,14 +252,16 @@ ul {
           transform: scale(1.1, 1.1);
 }
 
-#Knowledges {
+article {
   border: 2px solid #42429e;
   -webkit-box-shadow: 20px 20px 20px #010101;
           box-shadow: 20px 20px 20px #010101;
   background-color: #010101;
+}
+
+#Knowledges {
   padding: 10px 15px 25px 15px;
   margin: 100px 10px;
-  border-radius: .5rem;
   text-align: center;
 }
 
@@ -277,6 +298,6 @@ ul {
 
 #Knowledges .Knowledges-title {
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 /*# sourceMappingURL=index.css.map */

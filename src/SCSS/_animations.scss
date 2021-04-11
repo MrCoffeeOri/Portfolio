@@ -26,6 +26,10 @@
     100% {border: 2px solid darkorange;}
 }
 
+@keyframes Rotate {
+    to {transform: rotate(360deg);}
+}
+
 .TopBar {
     opacity: 0;
     animation: TopBarSlide 700ms forwards;
@@ -36,11 +40,15 @@
     animation: TitleSlide 800ms forwards 700ms;
 }
 
+main {
+    opacity: 0;
+    animation: Sizer 800ms forwards 1500ms;
+}
+
 .title:hover {
     animation: Rainbow 8s infinite 5s;
 }
 
-main {
-    opacity: 0;
-    animation: Sizer 800ms forwards 1500ms;
+.card-box img:hover {
+    animation: Rotate 1s 2s;
 }
