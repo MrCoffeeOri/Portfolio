@@ -46,9 +46,7 @@ ul {
     align-items: center;
     h1 {
         margin: 0;
-        @media screen and (max-width: 1205px){
-            font-size: 1.4pc;
-        }
+        @media screen and (max-width: 1205px){font-size: 1.4pc;}
     }
     img {
         width: 16vw;
