@@ -35,8 +35,8 @@ ul {
 }
 
 .title {
-    transition: 300ms;
     @include FlexSets(space-around);
+    transition: 300ms;
     border: 2px solid $fontColor;
     box-shadow: 20px 20px 20px darken($mainColor, 5);
     width: 70%;

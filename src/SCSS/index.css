@@ -224,13 +224,13 @@ ul {
 }
 
 .title {
-  -webkit-transition: 300ms;
-  transition: 300ms;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  -webkit-transition: 300ms;
+  transition: 300ms;
   border: 2px solid #42429e;
   -webkit-box-shadow: 20px 20px 20px #010101;
           box-shadow: 20px 20px 20px #010101;
