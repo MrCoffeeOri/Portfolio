@@ -23,7 +23,8 @@
     40% {border: 2px solid darkblue;}
     60% {border: 2px solid darkgray;}
     80% {border: 2px solid darkmagenta;}
-    100% {border: 2px solid darkorange;}
+    90% {border: 2px solid darkorange;}
+    100% {border: 2px solid rgb(66, 66, 158);}
 }
 
 @keyframes Rotate {
@@ -45,8 +46,9 @@ main {
     animation: Sizer 800ms forwards 1500ms;
 }
 
-.title:hover {
-    animation: Rainbow 8s infinite 5s;
+.title:hover, .Myhistory-content:hover {
+    transform: scale(1.1, 1.1);
+    animation: Rainbow 10s 5s;
 }
 
 .card-box img:hover {

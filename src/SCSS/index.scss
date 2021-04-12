@@ -20,8 +20,7 @@ ul {
     background-color: $secondaryColor;
     a {
         border-radius: 4rem;
-        font-weight: bolder;
-        text-decoration: none;
+        font-weight: bolder;      
         transition: 300ms;
         &:hover {
             color: lighten($fontColor, 12);
@@ -36,6 +35,7 @@ ul {
 }
 
 .title {
+    transition: 300ms;
     @include FlexSets(space-around);
     border: 2px solid $fontColor;
     box-shadow: 20px 20px 20px darken($mainColor, 5);
@@ -44,7 +44,6 @@ ul {
     border-radius: 6rem;
     background-color: $secondaryColor;
     align-items: center;
-    transition: 300ms;
     h1 {
         margin: 0;
         @media screen and (max-width: 1205px){
@@ -55,7 +54,6 @@ ul {
         width: 16vw;
         border-radius: 50%;
     }
-    &:hover {transform: scale(1.1, 1.1);}
 }
 
 // Main
@@ -65,28 +63,48 @@ article {
     background-color: $secondaryColor;
 }
 
+.article-title {
+    font-size: 2.2pc;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.card-box {@include FlexSets(space-around)}
+
+section {
+    text-align: center;
+    margin: 100px 10px 110px 0;
+}
+
 #Knowledges {
     padding: 10px 15px 25px 15px;
-    margin: 100px 10px;
-    text-align: center;
-    .card-box {@include FlexSets(space-around);}
+    .card-title {margin-bottom: 25px;}
+}
+
+article {
+    background-color: lighten($mainColor, 8);
+    border-radius: .5rem;
+    transition: 300ms;
+    padding: 20px;
     img {
         width: 100px;
         height: 100px;
     }
-    article {
-        background-color: lighten($mainColor, 8);
-        border-radius: .5rem;
+    h2 {margin: 0;}
+    &:hover {
+        transform: scale(1.2, 1.2);
+        background-color: inherit;
+    }
+}
+
+#Myhistory {
+    .Myhistory-content {
         transition: 300ms;
-        padding: 20px;
-        h2 {margin: 0;}
-        &:hover {
-            transform: scale(1.2, 1.2);
-            background-color: inherit;
-        }
+        width: 70%;
+        border: 2px solid $fontColor;
+        box-shadow: 20px 20px 20px darken($mainColor, 5);
+        background-color: $secondaryColor;
+        border-radius: .4rem;
     }
-    .Knowledges-title {
-        margin-top: 0;
-        margin-bottom: 30px;
-    }
+    .Myhistory-box {@include FlexSets(center);}
 }

@@ -10,6 +10,8 @@ $fontColor: rgb(66, 66, 158);
     color: $fontColor;
 }
 
+a {text-decoration: none;}
+
 @mixin FlexSets($justyContent) {
     display: flex;
     justify-content: $justyContent;

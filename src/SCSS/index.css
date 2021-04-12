@@ -86,8 +86,11 @@
   80% {
     border: 2px solid darkmagenta;
   }
-  100% {
+  90% {
     border: 2px solid darkorange;
+  }
+  100% {
+    border: 2px solid #42429e;
   }
 }
 
@@ -107,8 +110,11 @@
   80% {
     border: 2px solid darkmagenta;
   }
-  100% {
+  90% {
     border: 2px solid darkorange;
+  }
+  100% {
+    border: 2px solid #42429e;
   }
 }
 
@@ -144,9 +150,11 @@ main {
           animation: Sizer 800ms forwards 1500ms;
 }
 
-.title:hover {
-  -webkit-animation: Rainbow 8s infinite 5s;
-          animation: Rainbow 8s infinite 5s;
+.title:hover, .Myhistory-content:hover {
+  -webkit-transform: scale(1.1, 1.1);
+          transform: scale(1.1, 1.1);
+  -webkit-animation: Rainbow 10s 5s;
+          animation: Rainbow 10s 5s;
 }
 
 .card-box img:hover {
@@ -157,6 +165,10 @@ main {
 * {
   font-family: 'Nunito', sans-serif;
   color: #42429e;
+}
+
+a {
+  text-decoration: none;
 }
 
 body {
@@ -192,7 +204,6 @@ ul {
 .TopBar a {
   border-radius: 4rem;
   font-weight: bolder;
-  text-decoration: none;
   -webkit-transition: 300ms;
   transition: 300ms;
 }
@@ -213,6 +224,8 @@ ul {
 }
 
 .title {
+  -webkit-transition: 300ms;
+  transition: 300ms;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -228,8 +241,6 @@ ul {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-transition: 300ms;
-  transition: 300ms;
 }
 
 .title h1 {
@@ -247,11 +258,6 @@ ul {
   border-radius: 50%;
 }
 
-.title:hover {
-  -webkit-transform: scale(1.1, 1.1);
-          transform: scale(1.1, 1.1);
-}
-
 article {
   border: 2px solid #42429e;
   -webkit-box-shadow: 20px 20px 20px #010101;
@@ -259,13 +265,13 @@ article {
   background-color: #010101;
 }
 
-#Knowledges {
-  padding: 10px 15px 25px 15px;
-  margin: 100px 10px;
-  text-align: center;
+.article-title {
+  font-size: 2.2pc;
+  margin-top: 0;
+  margin-bottom: 40px;
 }
 
-#Knowledges .card-box {
+.card-box {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -273,12 +279,20 @@ article {
       justify-content: space-around;
 }
 
-#Knowledges img {
-  width: 100px;
-  height: 100px;
+section {
+  text-align: center;
+  margin: 100px 10px 110px 0;
 }
 
-#Knowledges article {
+#Knowledges {
+  padding: 10px 15px 25px 15px;
+}
+
+#Knowledges .card-title {
+  margin-bottom: 25px;
+}
+
+article {
   background-color: #222222;
   border-radius: .5rem;
   -webkit-transition: 300ms;
@@ -286,18 +300,38 @@ article {
   padding: 20px;
 }
 
-#Knowledges article h2 {
+article img {
+  width: 100px;
+  height: 100px;
+}
+
+article h2 {
   margin: 0;
 }
 
-#Knowledges article:hover {
+article:hover {
   -webkit-transform: scale(1.2, 1.2);
           transform: scale(1.2, 1.2);
   background-color: inherit;
 }
 
-#Knowledges .Knowledges-title {
-  margin-top: 0;
-  margin-bottom: 30px;
+#Myhistory .Myhistory-content {
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  width: 70%;
+  border: 2px solid #42429e;
+  -webkit-box-shadow: 20px 20px 20px #010101;
+          box-shadow: 20px 20px 20px #010101;
+  background-color: #010101;
+  border-radius: .4rem;
+}
+
+#Myhistory .Myhistory-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 /*# sourceMappingURL=index.css.map */
