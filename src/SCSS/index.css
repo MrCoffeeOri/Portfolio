@@ -186,7 +186,6 @@ ul {
           justify-content: space-between;
   width: 40vw;
   list-style: none;
-  margin: 0;
 }
 
 .TopBar {
@@ -195,6 +194,11 @@ ul {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -220,7 +224,7 @@ ul {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .title {
