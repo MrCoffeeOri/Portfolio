@@ -1,16 +1,20 @@
 @import "variables";
 
 body {
+    width: 100vw;
+    height: 100vh;
     margin: 0;
     padding: 0;
     background-color: $mainColor;
 }
 
-// Header
 ul {
     @include FlexSets(space-between);
-    width: 40vw;
     list-style: none;
+    li {
+        margin-right: 15px;
+        padding-right: 20px;
+    }
 }
 
 .TopBar {
@@ -28,18 +32,14 @@ ul {
         transition: 300ms;
         &:hover {
             color: lighten($fontColor, 12);
-            font-size: 1.3pc;
+            font-size: 1.2pc;
         }
     }
 }
 
-.title-box {
-    @include FlexSets(center);
-    margin-top: 100px;
-}
-
 .title {
     @include FlexSets(space-around);
+    margin: 100px auto;
     transition: 300ms;
     border: 2px solid $fontColor;
     box-shadow: 20px 20px 20px darken($mainColor, 5);
@@ -48,21 +48,11 @@ ul {
     border-radius: 6rem;
     background-color: $secondaryColor;
     align-items: center;
-    h1 {
-        margin: 0;
-        @media screen and (max-width: 1205px){font-size: 1.4pc;}
-    }
+    h1 {margin: 0}
     img {
         width: 16vw;
         border-radius: 50%;
     }
-}
-
-// Main
-article {
-    border: 2px solid $fontColor;
-    box-shadow: 20px 20px 20px darken($mainColor, 5);
-    background-color: $secondaryColor;
 }
 
 .article-title {
@@ -71,7 +61,30 @@ article {
     margin-bottom: 40px;
 }
 
-.card-box {@include FlexSets(space-around)}
+article {
+    border: 2px solid $fontColor;
+    box-shadow: 20px 20px 20px darken($mainColor, 5);
+    background-color: $secondaryColor;
+    background-color: lighten($mainColor, 8);
+    border-radius: .5rem;
+    transition: 300ms;
+    padding: 20px;
+    margin: 30px;
+    img {
+        width: 100px;
+        height: 100px;
+    }
+    h2 {margin: 0}
+    &:hover {
+        transform: scale(1.2, 1.2);
+        background-color: inherit;
+    }
+}
+
+.card-box {
+    @include FlexSets(space-around);
+    flex-wrap: wrap;
+}
 
 section {
     text-align: center;
@@ -83,30 +96,42 @@ section {
     .card-title {margin-bottom: 25px;}
 }
 
-article {
-    background-color: lighten($mainColor, 8);
-    border-radius: .5rem;
+.Myhistory-content {
+    margin: auto;
     transition: 300ms;
-    padding: 20px;
-    img {
-        width: 100px;
-        height: 100px;
-    }
-    h2 {margin: 0;}
-    &:hover {
-        transform: scale(1.2, 1.2);
-        background-color: inherit;
-    }
+    width: 70%;
+    border: 2px solid $fontColor;
+    box-shadow: 20px 20px 20px darken($mainColor, 5);
+    background-color: $secondaryColor;
+    border-radius: .4rem;
 }
 
-#Myhistory {
-    .Myhistory-content {
-        transition: 300ms;
-        width: 70%;
-        border: 2px solid $fontColor;
-        box-shadow: 20px 20px 20px darken($mainColor, 5);
-        background-color: $secondaryColor;
-        border-radius: .4rem;
+@media screen and (max-width: 768px) {
+    .TopBar {
+        position: relative;
+        width: 100vw;
+        flex-direction: column;
+        li {margin-right: 10px}
     }
-    .Myhistory-box {@include FlexSets(center);}
+
+    ul {padding: 0}
+
+    .title {
+        border-radius: .4rem;
+        h1 {
+            font-size: 1.4pc;
+            padding: 0 10px;
+        }
+        img {display: none}
+    }
+
+    #Contacts .card-box h2 {display: none}
+}
+
+@media screen and (max-width: 1200px) {
+    .title {
+        width: 50vw;
+        h1 {font-size: 1.5pc}
+        img {display: none}
+    }   
 }

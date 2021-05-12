@@ -138,7 +138,7 @@
           animation: TopBarSlide 700ms forwards;
 }
 
-.title-box {
+.title-animation {
   opacity: 0;
   -webkit-animation: TitleSlide 800ms forwards 700ms;
           animation: TitleSlide 800ms forwards 700ms;
@@ -172,6 +172,8 @@ a {
 }
 
 body {
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   padding: 0;
   background-color: #0e0e0e;
@@ -184,8 +186,12 @@ ul {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  width: 40vw;
   list-style: none;
+}
+
+ul li {
+  margin-right: 15px;
+  padding-right: 20px;
 }
 
 .TopBar {
@@ -214,17 +220,7 @@ ul {
 
 .TopBar a:hover {
   color: #6060bd;
-  font-size: 1.3pc;
-}
-
-.title-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-top: 100px;
+  font-size: 1.2pc;
 }
 
 .title {
@@ -233,6 +229,7 @@ ul {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  margin: 100px auto;
   -webkit-transition: 300ms;
   transition: 300ms;
   border: 2px solid #42429e;
@@ -251,22 +248,9 @@ ul {
   margin: 0;
 }
 
-@media screen and (max-width: 1205px) {
-  .title h1 {
-    font-size: 1.4pc;
-  }
-}
-
 .title img {
   width: 16vw;
   border-radius: 50%;
-}
-
-article {
-  border: 2px solid #42429e;
-  -webkit-box-shadow: 20px 20px 20px #010101;
-          box-shadow: 20px 20px 20px #010101;
-  background-color: #010101;
 }
 
 .article-title {
@@ -275,33 +259,17 @@ article {
   margin-bottom: 40px;
 }
 
-.card-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
-section {
-  text-align: center;
-  margin: 100px 10px 110px 0;
-}
-
-#Knowledges {
-  padding: 10px 15px 25px 15px;
-}
-
-#Knowledges .card-title {
-  margin-bottom: 25px;
-}
-
 article {
+  border: 2px solid #42429e;
+  -webkit-box-shadow: 20px 20px 20px #010101;
+          box-shadow: 20px 20px 20px #010101;
+  background-color: #010101;
   background-color: #222222;
   border-radius: .5rem;
   -webkit-transition: 300ms;
   transition: 300ms;
   padding: 20px;
+  margin: 30px;
 }
 
 article img {
@@ -319,7 +287,31 @@ article:hover {
   background-color: inherit;
 }
 
-#Myhistory .Myhistory-content {
+.card-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+section {
+  text-align: center;
+  margin: 100px 10px 110px 0;
+}
+
+#Knowledges {
+  padding: 10px 15px 25px 15px;
+}
+
+#Knowledges .card-title {
+  margin-bottom: 25px;
+}
+
+.Myhistory-content {
+  margin: auto;
   -webkit-transition: 300ms;
   transition: 300ms;
   width: 70%;
@@ -330,12 +322,45 @@ article:hover {
   border-radius: .4rem;
 }
 
-#Myhistory .Myhistory-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+@media screen and (max-width: 768px) {
+  .TopBar {
+    position: relative;
+    width: 100vw;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .TopBar li {
+    margin-right: 10px;
+  }
+  ul {
+    padding: 0;
+  }
+  .title {
+    border-radius: .4rem;
+  }
+  .title h1 {
+    font-size: 1.4pc;
+    padding: 0 10px;
+  }
+  .title img {
+    display: none;
+  }
+  #Contacts .card-box h2 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .title {
+    width: 50vw;
+  }
+  .title h1 {
+    font-size: 1.5pc;
+  }
+  .title img {
+    display: none;
+  }
 }
 /*# sourceMappingURL=index.css.map */
