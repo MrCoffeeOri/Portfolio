@@ -204,6 +204,8 @@ header img:hover {
 }
 
 .repo-box, .error-box {
+  -webkit-box-shadow: 10px 20px 20px #010101;
+          box-shadow: 10px 20px 20px #010101;
   text-align: center;
   background-color: #010101;
   margin: 30px auto;
