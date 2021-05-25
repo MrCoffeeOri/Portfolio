@@ -190,16 +190,17 @@ header {
 }
 
 header img {
+  width: 50px;
   position: absolute;
   left: 25px;
-  top: 17px;
+  top: 25px;
   -webkit-transition: 300ms;
   transition: 300ms;
 }
 
 header img:hover {
-  -webkit-transform: scale(1.1, 1.1);
-          transform: scale(1.1, 1.1);
+  -webkit-transform: scale(1.2, 1.2);
+          transform: scale(1.2, 1.2);
 }
 
 .repo-box, .error-box {
