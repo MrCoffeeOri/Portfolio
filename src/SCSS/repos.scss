@@ -1,0 +1,38 @@
+@import "variables";
+
+h1, h2, h3 {
+    margin: 0;
+    padding: 5px;
+}
+
+header {
+    background-color: $secondaryColor;
+    text-align: center;
+    img {
+        position: absolute;
+        left: 25px;
+        top: 17px;
+        transition: 300ms;
+        &:hover {
+            transform: scale(1.1, 1.1);
+        }
+    }
+}
+
+.repo-box, .error-box {
+    text-align: center;
+    background-color: $secondaryColor;
+    margin: 30px auto;
+    padding: 7px 10px;
+    width: 50%;
+    border-radius: .4rem;
+    transition: 300ms;
+    &:hover {
+        transform: scale(1.1, 1.1);
+    }
+}
+
+.last-updates {
+    background-color: $mainColor;
+    border-radius: inherit;
+}

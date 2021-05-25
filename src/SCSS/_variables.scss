@@ -12,6 +12,14 @@ $fontColor: rgb(66, 66, 158);
 
 a {text-decoration: none;}
 
+body {
+    width: 98vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: $mainColor;
+}
+
 @mixin FlexSets($justyContent) {
     display: flex;
     justify-content: $justyContent;

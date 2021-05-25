@@ -1,13 +1,5 @@
 @import "variables";
 
-body {
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-color: $mainColor;
-}
-
 ul {
     @include FlexSets(space-between);
     list-style: none;
@@ -107,14 +99,25 @@ section {
 }
 
 @media screen and (max-width: 768px) {
-    .TopBar {
-        position: relative;
+    body {
         width: 100vw;
-        flex-direction: column;
-        li {margin-right: 10px}
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        background-color: $mainColor;
     }
 
-    ul {padding: 0}
+    .TopBar {
+        position: relative;
+        flex-direction: column;
+        li {margin: 4px auto}
+        li:last-of-type {padding-left: 20px}
+    }
+
+    ul {
+        padding: 0;
+        flex-wrap: wrap;
+    }
 
     .title {
         border-radius: .4rem;

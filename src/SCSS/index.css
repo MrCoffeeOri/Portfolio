@@ -172,7 +172,7 @@ a {
 }
 
 body {
-  width: 100vw;
+  width: 98vw;
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -323,19 +323,30 @@ section {
 }
 
 @media screen and (max-width: 768px) {
+  body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #0e0e0e;
+  }
   .TopBar {
     position: relative;
-    width: 100vw;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
   }
   .TopBar li {
-    margin-right: 10px;
+    margin: 4px auto;
+  }
+  .TopBar li:last-of-type {
+    padding-left: 20px;
   }
   ul {
     padding: 0;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
   .title {
     border-radius: .4rem;
