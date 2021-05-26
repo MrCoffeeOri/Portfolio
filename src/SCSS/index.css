@@ -263,7 +263,6 @@ article {
   border: 2px solid #42429e;
   -webkit-box-shadow: 20px 20px 20px #010101;
           box-shadow: 20px 20px 20px #010101;
-  background-color: #010101;
   background-color: #222222;
   border-radius: .5rem;
   -webkit-transition: 300ms;
@@ -325,10 +324,6 @@ section {
 @media screen and (max-width: 768px) {
   body {
     width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-color: #0e0e0e;
   }
   .TopBar {
     position: relative;

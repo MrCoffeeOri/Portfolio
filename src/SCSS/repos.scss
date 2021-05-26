@@ -14,9 +14,7 @@ header {
         left: 25px;
         top: 25px;
         transition: 300ms;
-        &:hover {
-            transform: scale(1.2, 1.2);
-        }
+        &:hover {transform: scale(1.2, 1.2)}
     }
 }
 
@@ -27,14 +25,21 @@ header {
     margin: 30px auto;
     padding: 7px 10px;
     width: 50%;
-    border-radius: .4rem;
+    border-radius: .5rem;
     transition: 300ms;
-    &:hover {
-        transform: scale(1.1, 1.1);
-    }
+    span {@extend .repo-tag}
+    &:hover {transform: scale(1.1, 1.1)}
 }
 
 .last-updates {
     background-color: $mainColor;
     border-radius: inherit;
+}
+
+.repo-tag {
+    background-color: lighten($mainColor, 3);
+    margin-right: 5px;
+    padding: 5px;
+    border-radius: 4rem;
+    font-weight: bolder;
 }

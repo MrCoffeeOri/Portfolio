@@ -56,7 +56,6 @@ ul {
 article {
     border: 2px solid $fontColor;
     box-shadow: 20px 20px 20px darken($mainColor, 5);
-    background-color: $secondaryColor;
     background-color: lighten($mainColor, 8);
     border-radius: .5rem;
     transition: 300ms;
@@ -99,13 +98,7 @@ section {
 }
 
 @media screen and (max-width: 768px) {
-    body {
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        padding: 0;
-        background-color: $mainColor;
-    }
+    body {width: 100vw}
 
     .TopBar {
         position: relative;
