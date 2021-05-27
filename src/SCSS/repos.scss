@@ -27,19 +27,24 @@ header {
     width: 50%;
     border-radius: .5rem;
     transition: 300ms;
-    span {@extend .repo-tag}
     &:hover {transform: scale(1.1, 1.1)}
 }
 
-.last-updates {
-    background-color: $mainColor;
-    border-radius: inherit;
+.repo-info {
+    color: white;
+    background-color: #42429E;
+    padding: 1px 5px;
+    border-radius: 4rem;
 }
 
-.repo-tag {
-    background-color: lighten($mainColor, 3);
-    margin-right: 5px;
-    padding: 5px;
-    border-radius: 4rem;
-    font-weight: bolder;
+.tags-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    p {
+        @extend .repo-info;
+        padding: 3px;
+        border-radius: .4rem;
+        color: white;
+    }
 }

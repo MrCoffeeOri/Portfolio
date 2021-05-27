@@ -221,16 +221,26 @@ header img:hover {
           transform: scale(1.1, 1.1);
 }
 
-.last-updates {
-  background-color: #0e0e0e;
-  border-radius: inherit;
+.repo-info, .tags-box p {
+  color: white;
+  background-color: #42429E;
+  padding: 1px 5px;
+  border-radius: 4rem;
 }
 
-.repo-tag, .repo-box span, .error-box span {
-  background-color: #161616;
-  margin-right: 5px;
-  padding: 5px;
-  border-radius: 4rem;
-  font-weight: bolder;
+.tags-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.tags-box p {
+  padding: 3px;
+  border-radius: .4rem;
+  color: white;
 }
 /*# sourceMappingURL=repos.css.map */
