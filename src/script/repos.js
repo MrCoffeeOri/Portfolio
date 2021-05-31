@@ -1,4 +1,4 @@
-const Fetch = (URL) => fetch(URL).then(res => res.json())
+const Fetch = async (URL) => await fetch(URL).then(res => res.json())
 .catch(error => document.getElementById('repositories-box').innerHTML = `<div class="error-box"><h1>An error occurred while loading data !</h1><p>${error}</p></div>`);
 
 const CreateRepoBox = ({name, html_url, description, fork, updated_at, default_branch, watchers, open_issues, license}) => document.getElementById('repositories-box').innerHTML +=
