@@ -97,14 +97,12 @@ section {
     border-radius: .4rem;
 }
 
-@media screen and (max-width: 768px) {
-    body {width: 100vw}
-
+@media screen and (max-width: 910px) {
     .TopBar {
         position: relative;
         flex-direction: column;
         li {margin: 4px auto}
-        li:last-of-type {padding-left: 20px}
+        li:last-of-type {padding: 0}
     }
 
     ul {

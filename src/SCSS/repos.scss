@@ -56,3 +56,11 @@ header {
         overflow-x: hidden;
     }
 }
+
+@media screen and (max-width: 425px) {
+    header {
+        h1 {visibility: hidden}
+        img {left: 44%}
+    }
+    .repo-box h1 {font-size: 1.2pc}
+}

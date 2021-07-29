@@ -1,60 +1,75 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
 @-webkit-keyframes Sizer {
   0% {
-    transform: scale(0, 0);
+    -webkit-transform: scale(0, 0);
+            transform: scale(0, 0);
   }
   50% {
-    transform: scale(1.1, 1.1);
+    -webkit-transform: scale(1.1, 1.1);
+            transform: scale(1.1, 1.1);
   }
   100% {
     opacity: 1;
-    transform: scale(1, 1);
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
   }
 }
 @keyframes Sizer {
   0% {
-    transform: scale(0, 0);
+    -webkit-transform: scale(0, 0);
+            transform: scale(0, 0);
   }
   50% {
-    transform: scale(1.1, 1.1);
+    -webkit-transform: scale(1.1, 1.1);
+            transform: scale(1.1, 1.1);
   }
   100% {
     opacity: 1;
-    transform: scale(1, 1);
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
   }
 }
+
 @-webkit-keyframes TopBarSlide {
   from {
-    transform: translate(-1000px);
+    -webkit-transform: translate(-1000px);
+            transform: translate(-1000px);
   }
   to {
     opacity: 1;
   }
 }
+
 @keyframes TopBarSlide {
   from {
-    transform: translate(-1000px);
+    -webkit-transform: translate(-1000px);
+            transform: translate(-1000px);
   }
   to {
     opacity: 1;
   }
 }
+
 @-webkit-keyframes TitleSlide {
   from {
-    transform: translate(-1000px);
+    -webkit-transform: translate(-1000px);
+            transform: translate(-1000px);
   }
   to {
     opacity: 1;
   }
 }
+
 @keyframes TitleSlide {
   from {
-    transform: translate(-1000px);
+    -webkit-transform: translate(-1000px);
+            transform: translate(-1000px);
   }
   to {
     opacity: 1;
   }
 }
+
 @-webkit-keyframes Rainbow {
   0% {
     border: 2px solid #42429e;
@@ -78,6 +93,7 @@
     border: 2px solid #42429e;
   }
 }
+
 @keyframes Rainbow {
   0% {
     border: 2px solid #42429e;
@@ -101,16 +117,21 @@
     border: 2px solid #42429e;
   }
 }
+
 @-webkit-keyframes Rotate {
   to {
-    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }
+
 @keyframes Rotate {
   to {
-    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }
+
 .TopBar {
   opacity: 0;
   -webkit-animation: TopBarSlide 700ms forwards;
@@ -130,7 +151,8 @@ main, footer {
 }
 
 .title:hover, .Myhistory-content:hover {
-  transform: scale(1.1, 1.1);
+  -webkit-transform: scale(1.1, 1.1);
+          transform: scale(1.1, 1.1);
   -webkit-animation: Rainbow 10s 5s;
           animation: Rainbow 10s 5s;
 }
@@ -141,7 +163,7 @@ main, footer {
 }
 
 * {
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   color: #42429e;
 }
 
@@ -150,8 +172,8 @@ a {
 }
 
 body {
-  width: 98vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   background-color: #0e0e0e;
@@ -166,29 +188,37 @@ header {
   background-color: #010101;
   text-align: center;
 }
+
 header img {
   width: 50px;
   position: absolute;
   left: 25px;
   top: 25px;
+  -webkit-transition: 300ms;
   transition: 300ms;
 }
+
 header img:hover {
-  transform: scale(1.2, 1.2);
+  -webkit-transform: scale(1.2, 1.2);
+          transform: scale(1.2, 1.2);
 }
 
 .repo-box, .error-box {
-  box-shadow: 10px 20px 20px #010101;
+  -webkit-box-shadow: 10px 20px 20px #010101;
+          box-shadow: 10px 20px 20px #010101;
   text-align: center;
   background-color: #010101;
   margin: 30px auto;
   padding: 7px 10px;
   width: 50%;
-  border-radius: 0.5rem;
+  border-radius: .5rem;
+  -webkit-transition: 300ms;
   transition: 300ms;
 }
+
 .repo-box:hover, .error-box:hover {
-  transform: scale(1.1, 1.1);
+  -webkit-transform: scale(1.1, 1.1);
+          transform: scale(1.1, 1.1);
 }
 
 .repo-info, .tags-box p {
@@ -199,13 +229,18 @@ header img:hover {
 }
 
 .tags-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
+
 .tags-box p {
   padding: 3px;
-  border-radius: 0.4rem;
+  border-radius: .4rem;
   color: white;
 }
 
@@ -213,9 +248,21 @@ header img:hover {
   #title-name {
     display: none;
   }
-
   .repo-info, .tags-box p {
-    border-radius: 0.4rem;
+    border-radius: .4rem;
     overflow-x: hidden;
   }
-}/*# sourceMappingURL=repos.css.map */
+}
+
+@media screen and (max-width: 425px) {
+  header h1 {
+    visibility: hidden;
+  }
+  header img {
+    left: 44%;
+  }
+  .repo-box h1 {
+    font-size: 1.2pc;
+  }
+}
+/*# sourceMappingURL=repos.css.map */

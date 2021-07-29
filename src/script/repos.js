@@ -9,10 +9,10 @@ const CreateRepoBox = ({name, html_url, description, fork, updated_at, default_b
         <p class="repo-info">${description && description}</p>
         <div class="tags-box">
             ${license ? `<p style="background-color: #003451;">${license.name}</p>` : '<p style="background-color: #400629;">No license</p>'}
-            ${fork ? '<p style="background-color: #1C6B45;">Forked</p>' : '<p style="background-color: #16553A;">Not forked</p>'}
+            ${fork ? '<p style="background-color: #1C6B45;">Forked</p>' : ''}
             ${open_issues > 0 ? `<p style="background-color: #721C1C;">Open issues: ${open_issues}</p>` : `<p>Open issues: 0</p>`}
             ${watchers > 0 ? `<p style="background-color: #1D1D51;">Watchers: ${watchers}</p>` : `<p>Watchers: 0</p>`}
-            ${default_branch == "master" ? `<p style="background-color: #9B6B22;">Default branch: ${default_branch}</p>` : `<p style="background-color: #225864;">Default branch: ${default_branch}</p>`}
+            ${`<p style="background-color: ${default_branch == "master" ? '#9B6B22' : '#225864'};">Default branch: ${default_branch}</p>`}
         </div>
         <p class="repo-info">Last update: ${updatedDate.getMonth()} / ${updatedDate.getDate()} / ${updatedDate.getFullYear()} (month-day-year)</p>
     </div>`
