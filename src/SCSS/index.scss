@@ -18,6 +18,7 @@ ul {
     z-index: 1;
     align-items: center;
     background-color: $secondaryColor;
+    box-shadow: -1px 10px 10px darken($mainColor, 5);
     a {
         border-radius: 4rem;
         font-weight: bolder;      

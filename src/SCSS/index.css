@@ -209,6 +209,8 @@ ul li {
       -ms-flex-align: center;
           align-items: center;
   background-color: #010101;
+  -webkit-box-shadow: -1px 10px 10px #010101;
+          box-shadow: -1px 10px 10px #010101;
 }
 
 .TopBar a {
