@@ -18,7 +18,7 @@ const CreateRepoBox = ({name, html_url, description, fork, updated_at, default_b
     </div>`
 }
 
-Fetch('https://api.github.com/users/Coffee-Developer').then(user_data => Fetch(user_data.repos_url).then(user_repos => {
+Fetch('https://api.github.com/users/SrCoffeeOri').then(user_data => Fetch(user_data.repos_url).then(user_repos => {
     document.getElementById('title-name').innerText = user_data.login
     user_repos.map(CreateRepoBox)
 }))
