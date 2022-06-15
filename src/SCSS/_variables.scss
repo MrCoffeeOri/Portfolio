@@ -3,14 +3,17 @@
 
 $mainColor: rgb(14, 14, 14);
 $secondaryColor: darken($mainColor,  5);
-$fontColor: rgb(66, 66, 158);
+$fontColor: rgb(0, 0, 0);
 
 * {
     font-family: 'Nunito', sans-serif;
     color: $fontColor;
 }
 
-a {text-decoration: none;}
+a {
+    text-decoration: none;
+    color: rgb(10, 52, 99);
+}
 
 body {
     width: 100%;
