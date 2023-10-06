@@ -5,120 +5,15 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="SCSS/index.css">
+        <link rel="stylesheet" href="CSS/index.css">
+        <script src="script/background.js" defer></script>
+        <script src="script/terminal.js" defer></script>
         <title>Renan's Portfolio</title>
     </head>
     <body>
-        <header>
-            <nav class="TopBar">
-                <h3><a href="https://github.com/Coffee-Developer">Renan's Portfolio</a></h3>
-                <ul>
-                    <li><a href="#Knowledges">Knowledges</a></li>
-                    <li><a href="#History">History</a></li>
-                    <li><a href="#Contacts">Contacts</a></li>
-                    <li><a href="repos.html">Repositories</a></li>
-                </ul>
-            </nav>
-            <div class="title-animation">
-                <div class="title">
-                    <h1>Hello 👋 !<br>My name is Renan Penha Marquette and<br>I'm a young developer 👨‍💻.</h1>
-                    <img src="./img/CoffeeLogo.png" alt="">
-                </div>
-            </div>
-        </header>
-        <main>
-            <section id="Knowledges">
-                <h2 class="article-title">Knowledges</h2>
-                <h2 class="card-title">Languages</h2>
-                <div style="margin-bottom: 80px;" class="card-box">
-                    <article class="cppCard">
-                        <img src="https://raw.githubusercontent.com/jmnote/z-icons/master/svg/cpp.svg" />
-                        <h2>C++</h2>
-                        <span>Intermediate</span>
-                    </article>
-                    <article class="csharpCard">
-                        <img src="https://raw.githubusercontent.com/jmnote/z-icons/master/svg/csharp.svg" />
-                        <h2>CSharp</h2>
-                        <span>Advanced</span>
-                    </article>
-                    <article class="htmlCard">
-                        <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png" />
-                        <h2>HTML</h2>
-                        <span>Advanced</span>
-                    </article>
-                    <article class="cssCard">
-                        <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/css/css.png" />
-                        <h2>CSS</h2>
-                        <span>Advanced</span>
-                    </article>
-                    <article class="scssCard">
-                        <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/sass/sass.png" />
-                        <h2>SASS</h2>
-                        <span>Advanced</span>
-                    </article>
-                    <article class="jsCard">
-                        <img src="https://raw.githubusercontent.com/jmnote/z-icons/master/svg/javascript.svg" alt="">
-                        <h2>Javascript</h2>
-                        <span>Advanced</span>
-                    </article>
-                </div>
-                <h2 class="card-title">Technologies</h2>
-                <div class="card-box">
-                    <article>
-                        <img src="https://cdn4.iconfinder.com/data/icons/various-icons-2/476/Unity.png" />
-                        <h2>Unity</h2>
-                    </article>
-                    <article>
-                        <img src="https://cdn.iconscout.com/icon/free/png-512/react-1-282599.png" />
-                        <h2>React JS</h2>
-                    </article>
-                    <article>
-                        <img src="https://seeklogo.com/images/N/nodejs-logo-FBE122E377-seeklogo.com.png" />
-                        <h2>Node JS</h2>
-                    </article>
-                    <article>
-                        <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png" />
-                        <h2>VS Code</h2>
-                    </article>
-                    <article>
-                        <img src="https://img.icons8.com/color/452/visual-studio.png" />
-                        <h2>Visual Studio</h2>
-                    </article>
-                    <article>
-                        <img src="https://raw.githubusercontent.com/jmnote/z-icons/master/svg/git.svg" />
-                        <h2>Git</h2>
-                    </article>
-                    <article>
-                        <img src="https://raw.githubusercontent.com/github/explore/78df643247d429f6cc873026c0622819ad797942/topics/github/github.png" />
-                        <h2>Github</h2>
-                    </article>
-                </div>
-            </section>
-            <section id="History">
-                <h2 class="article-title">My history</h2>
-                <div class="Myhistory-content">
-                    <p>I started programming at about 13 years old, my first language was HTML and my first programming language was Javascript, I started with web development and then I learned a little bit about Unity, but now I'm interested in software development in C # and C ++ . Now I am studying and practicing a lot, I intend to work in the area of ​​software engineering or web development.</p>
-                </div>
-            </section>
-        </main>
-        <footer>
-            <section id="Contacts">
-                <h2 class="article-title">Contacts</h2>
-                <div class="card-box">
-                    <a href="https://github.com/MrCoffeeOri">
-                        <article>
-                            <img src="https://raw.githubusercontent.com/github/explore/78df643247d429f6cc873026c0622819ad797942/topics/github/github.png" />
-                            <h2>MrCoffeeOri</h2>
-                        </article>
-                    </a>
-                    <a href="https://mail.google.com">
-                        <article>
-                            <img src="https://cdn4.iconfinder.com/data/icons/social-media-logos-6/512/112-gmail_email_mail-512.png" />
-                            <h2>rpenhamarquette@gmail.com</h2>
-                        </article>
-                    </a>
-                </div>
-            </section>
-        </footer>
+        <div id="messages">
+            <div><span>C:\Users\MrCoffee></span><span></span><div id="col"></div></div>
+        </div>
+        <canvas></canvas>
     </body>
 </html>
