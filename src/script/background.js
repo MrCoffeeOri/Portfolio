@@ -15,10 +15,11 @@ requestAnimationFrame(Tick)
 
 function Tick() {
     ctx.clearRect(0, 0, innerWidth, innerHeight)
+    ctx.fillStyle = ctx.strokeStyle = 'rgb(0, 50, 0, 0.5)'
     for (let i = 0; i < objs.length; i++) {
-        if (objs[i].position.x <= 0 || objs[i].position.x >= innerWidth)
+        if (objs[i].position.x - objs[i].size <= 0 || objs[i].position.x + objs[i].size >= innerWidth)
             objs[i].velocity.x = -objs[i].velocity.x 
-        if (objs[i].position.y <= 0 || objs[i].position.y >= innerHeight) 
+        if (objs[i].position.y - objs[i].size <= 0 || objs[i].position.y + objs[i].size >= innerHeight) 
             objs[i].velocity.y = -objs[i].velocity.y
         objs[i].position.x += objs[i].velocity.x 
         objs[i].position.y += objs[i].velocity.y
@@ -37,5 +38,4 @@ function Tick() {
 function Resize() {
     ctx.canvas.width = innerWidth
     ctx.canvas.height = innerHeight
-    ctx.fillStyle = ctx.strokeStyle = 'rgb(14, 14, 14)'
 }

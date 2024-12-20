@@ -37,13 +37,116 @@ const commands = {
         func: () => {
             fetch("https://api.github.com/users/MrCoffeeOri/repos")
                 .then(res => res.json())
-                .then(data => ShowMessages([data.reduce((acc, curr) => acc + `$---Name: ${curr.name}$---Description: ${curr.description || "No description"}$---License: ${curr.license?.name || "No license"}$---URL: ${curr.html_url}$---Fork: ${curr.fork}$---Open issues: ${curr.open_issues}$---Watchers: ${curr.watchers}$`, '')], 1))
+                .then(data => ShowMessages([data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)).reduce((acc, curr) => acc + `$---Name: ${curr.name}$---Description: ${curr.description || "No description"}$---License: ${curr.license?.name || "No license"}$---URL: ${curr.html_url}$---Fork: ${curr.fork}$---Open issues: ${curr.open_issues}$---Watchers: ${curr.watchers}$`, '')], 1))
         },
         desc: "Shows all my repos"
     },
     "!myHistory": {
         func: () => ShowMessages(["$$I started programming at about 13 years old, my first language was HTML and my first programming language was Javascript, I started with web development and then I learned a little bit about Unity, but now I'm interested in software development in C # and C ++ . Now I am studying and practicing a lot, I intend to work in the area of software engineering or web development."], 1),
         desc: "Shows my history"
+    },
+    "!pong": {
+        func: () => {
+            const canvas = document.createElement('canvas')
+            canvas.width = 600
+            canvas.height = 400
+            canvas.id = "pong"
+            document.body.appendChild(canvas)
+            const ctx = canvas.getContext('2d')
+
+            const scoreDisplay = document.createElement('div')
+            scoreDisplay.id = 'score'
+            document.body.appendChild(scoreDisplay)
+
+            let paddleHeight = 10, paddleWidth = 75, paddleX = (canvas.width - paddleWidth) / 2
+            let rightPressed = false, leftPressed = false
+            let ballRadius = 10, x = canvas.width / 2, y = canvas.height - 30
+            let dx = 2, dy = -2
+            let score = 0
+
+            document.addEventListener("keydown", keyDownHandler, false)
+            document.addEventListener("keyup", keyUpHandler, false)
+
+            function keyDownHandler(e) {
+                if (e.key == "Right" || e.key == "ArrowRight") {
+                    rightPressed = true
+                } else if (e.key == "Left" || e.key == "ArrowLeft") {
+                    leftPressed = true
+                }
+            }
+
+            function keyUpHandler(e) {
+                if (e.key == "Right" || e.key == "ArrowRight") {
+                    rightPressed = false
+                } else if (e.key == "Left" || e.key == "ArrowLeft") {
+                    leftPressed = false
+                }
+            }
+
+            function drawBall() {
+                ctx.beginPath()
+                ctx.arc(x, y, ballRadius, 0, Math.PI * 2)
+                ctx.fillStyle = "#0095DD"
+                ctx.fill()
+                ctx.closePath()
+            }
+
+            function drawPaddle() {
+                ctx.beginPath()
+                ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight)
+                ctx.fillStyle = "#0095DD"
+                ctx.fill()
+                ctx.closePath()
+            }
+
+            function drawScore() {
+                scoreDisplay.innerHTML = `Score: ${score}`
+            }
+
+            function collisionDetection() {
+                if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+                    dx = -dx
+                }
+                if (y + dy < ballRadius) {
+                    dy = -dy
+                } else if (y + dy > canvas.height - ballRadius) {
+                    if (x > paddleX && x < paddleX + paddleWidth) {
+                        dy = -dy
+                        score++
+                    } else {
+                        window.removeEventListener("keydown", keyDownHandler)
+                        window.removeEventListener("keyup", keyUpHandler)
+                        document.body.removeChild(canvas)
+                        document.body.removeChild(scoreDisplay)
+                        ShowMessages([`Game Over! Your score was: ${score}`], 1)
+                    }
+                }
+            }
+
+            function movePaddle() {
+                if (rightPressed && paddleX < canvas.width - paddleWidth) {
+                    paddleX += 7
+                } else if (leftPressed && paddleX > 0) {
+                    paddleX -= 7
+                }
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height)
+                drawBall()
+                drawPaddle()
+                drawScore()
+                collisionDetection()
+                movePaddle()
+
+                x += dx
+                y += dy
+                requestAnimationFrame(draw)
+            }
+
+            draw()
+        },
+        desc: "Play Pong game"
     }
 }
 let commandHistory = [], commandHistoryIndex = 0

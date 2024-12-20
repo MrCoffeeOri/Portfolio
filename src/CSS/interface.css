@@ -1,0 +1,170 @@
+body {
+    background-color: #1B2838;
+    color: white;
+    font-family: 'Inconsolata', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header .profile-image {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+header h2 {
+    margin: 10px 0;
+}
+
+header p {
+    margin: 5px 0;
+}
+
+header a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #0095DD;
+    text-decoration: none;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+main {
+    text-align: center;
+    width: 90%;
+    max-width: 1000px;
+    background-color: #2A3B47;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#filter-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#filter-tools input,
+#filter-tools select {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-family: 'Inconsolata', monospace;
+    margin-right: 10px;
+}
+
+#display-options {
+    display: flex;
+    align-items: center;
+}
+
+.view-btn {
+    background-color: #3C4A57;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.view-btn:hover {
+    background-color: #0095DD;
+}
+
+.profile-image {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.repo {
+    background-color: #3C4A57;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: left;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.repo:hover {
+    transform: scale(1.02);
+}
+
+a {
+    color: #0095DD;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+i {
+    margin-right: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+.repo-details {
+    border-left: #0095DD 5px solid;
+    padding: 5px 20px;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.close-btn {
+    background-color: #0095DD;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.close-btn:hover {
+    background-color: #007BB5;
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2em;
+}
+
+.grid-view .repo {
+    display: inline-block;
+    width: calc(33.333% - 20px);
+    margin: 10px;
+    vertical-align: top;
+}
+
+.list-view .repo {
+    display: block;
+    width: 100%;
+}
+
+#error-message {
+    color: red;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
