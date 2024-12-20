@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap');
+
+@keyframes swapping {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+canvas {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    display: block;
+    background-color: rgb(19, 19, 19);
+}
+
+#col {
+    animation: swapping 1.1s infinite;
+    display: inline;
+    padding: 0 5px;
+    background-color: rgb(10, 132, 10);
+}
+
+#messages {
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#messages > div { margin: 10px; }
+
+span, input { color: rgb(10, 132, 10); }
+
+#pong {
+    top: 10%;
+    left: 28%;
+    border: 2px solid #0095DD;
+    background-color: #000;
+}
+
+#score {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 24px;
+    font-family: 'Inconsolata', monospace;
+}
