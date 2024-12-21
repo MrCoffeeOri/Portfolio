@@ -90,7 +90,7 @@
                     repoDiv.classList.add('repo');
                     repoDiv.innerHTML = `
                         <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
-                        <p>${repo.description}</p>
+                        <p style="word-break: break-all;">${repo.description}</p>
                         <p><i class="fas fa-code"></i> <strong>Language:</strong> ${repo.language}</p>
                         <p><i class="fas fa-star"></i> <strong>Stars:</strong> ${repo.stargazers_count}</p>
                         <p><i class="fas fa-code-branch"></i> <strong>Forks:</strong> ${repo.forks_count}</p>

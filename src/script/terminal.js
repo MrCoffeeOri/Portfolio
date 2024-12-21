@@ -147,6 +147,10 @@ const commands = {
             draw()
         },
         desc: "Play Pong game"
+    },
+    "!interface": {
+        func: () => window.location.href += "/interface.html",
+        desc: "Shows the web interface"
     }
 }
 let commandHistory = [], commandHistoryIndex = 0
