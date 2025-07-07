@@ -208,7 +208,7 @@ function showCustomAlert(message, duration = 2500) {
 }
 
 (function() {
-    emailjs.init("lQ3D5dbfVfYXm0J0d"); //lQ3D5dbfVfYXm0J0d
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
 })();
 
 document.getElementById('contact-form').addEventListener('submit', function(e) {
@@ -238,7 +238,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
         return;
     }
     
-    emailjs.send('service_a1hr2m8', 'template_fxsc5ln', formData)
+    emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, formData)
         .then(function(response) {
             localStorage.setItem('lastEmailSubmission', now.toString());
             showCustomAlert(`Thank you ${formData.name} for your message!<br/> I'll get back to you soon.`, 10000);
