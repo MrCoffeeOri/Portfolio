@@ -37,9 +37,9 @@ jobs:
         run: |
           cat > src/config.js << EOF
           const EMAILJS_CONFIG = {
-              PUBLIC_KEY: '${{ secrets.EMAILJS_PUBLIC_KEY }}',
-              SERVICE_ID: '${{ secrets.EMAILJS_SERVICE_ID }}',
-              TEMPLATE_ID: '${{ secrets.EMAILJS_TEMPLATE_ID }}'
+              PUBLIC_KEY: '${{ secrets.PUBLIC_KEY }}',
+              SERVICE_ID: '${{ secrets.SERVICE_ID }}',
+              TEMPLATE_ID: '${{ secrets.TEMPLATE_ID }}'
           };
           if (typeof module !== 'undefined' && module.exports) {
               module.exports = EMAILJS_CONFIG;
