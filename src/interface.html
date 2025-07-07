@@ -7,157 +7,226 @@
         <link rel="stylesheet" href="CSS/interface.css">
         <link rel="stylesheet" href="CSS/settings.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+        <script src="./script/interface.js" defer></script>
         <title>Renan's Portfolio</title>
     </head>
     <body>
-        <header>
-            <h1>Renan's Portfolio</h1>
-            <div id="profile-info"></div>
-        </header>
-        <main>
-            <div id="github-info"></div>
-            <div id="filter-tools">
-                <input type="text" id="search-bar" placeholder="Search repositories...">
-                <select id="language-filter">
-                    <option value="">All Languages</option>
-                </select>
-                <select id="stars-filter">
-                    <option value="">All Stars</option>
-                    <option value="1">1+</option>
-                    <option value="10">10+</option>
-                    <option value="50">50+</option>
-                    <option value="100">100+</option>
-                </select>
-                <div id="display-options">
-                    <button id="grid-view" class="view-btn"><i class="fas fa-th"></i></button>
-                    <button id="list-view" class="view-btn"><i class="fas fa-list"></i></button>
-                </div>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">Renan Penha</div>
+                <ul class="nav-menu">
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
             </div>
-            <div id="repos" class="list-view"></div>
-            <div id="error-message" class="hidden">Failed to load data from GitHub API. Please try again later.</div>
+        </nav>
+
+        <main>
+            <!-- Hero Section -->
+            <section id="hero" class="hero-section">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">Hi, I'm <span class="highlight">Renan Penha</span></h1>
+                        <p class="hero-subtitle">Full-Stack Developer & Open Source Enthusiast</p>
+                        <p class="hero-description">Passionate about creating innovative solutions and contributing to the developer community. I love building applications that make a difference.</p>
+                        <div class="hero-buttons">
+                            <a href="#projects" class="btn btn-primary">View My Work</a>
+                            <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div id="profile-info"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="section">
+                <div class="container">
+                    <h2 class="section-title">About Me</h2>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p>I'm a dedicated developer with a passion for creating meaningful applications and contributing to open-source projects. My journey in software development has been driven by curiosity and a desire to solve real-world problems.</p>
+                            <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community. I believe in continuous learning and staying up-to-date with the latest industry trends.</p>
+                            <div class="about-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-code"></i>
+                                    <span class="stat-number" id="public-repos">0</span>
+                                    <span class="stat-label">Projects</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-users"></i>
+                                    <span class="stat-number" id="followers">0</span>
+                                    <span class="stat-label">Followers</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-star"></i>
+                                    <span class="stat-number" id="total-stars">0</span>
+                                    <span class="stat-label">Stars</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-details">
+                            <div class="detail-card">
+                                <i class="fas fa-graduation-cap"></i>
+                                <h3>Education</h3>
+                                <p>Computer Science & System Analysis</p>
+                            </div>
+                            <div class="detail-card">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <h3>Location</h3>
+                                <p id="location">Loading...</p>
+                            </div>
+                            <div class="detail-card">
+                                <i class="fas fa-calendar-alt"></i>
+                                <h3>Experience</h3>
+                                <p>3+ years in software development</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="section">
+                <div class="container">
+                    <h2 class="section-title">Skills & Technologies</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Frontend</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">Vue.js</span>
+                                <span class="skill-tag">HTML5</span>
+                                <span class="skill-tag">CSS3</span>
+                                <span class="skill-tag">SASS</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Backend</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Java</span>
+                                <span class="skill-tag">Express.js</span>
+                                <span class="skill-tag">Django</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Database</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">MongoDB</span>
+                                <span class="skill-tag">PostgreSQL</span>
+                                <span class="skill-tag">MySQL</span>
+                                <span class="skill-tag">Redis</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Tools & Others</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">AWS</span>
+                                <span class="skill-tag">Linux</span>
+                                <span class="skill-tag">REST APIs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section">
+                <div class="container">
+                    <h2 class="section-title">My Projects</h2>
+                    <div id="filter-tools" class="filter-tools">
+                        <div class="search-group">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="search-bar" placeholder="Search repositories...">
+                        </div>
+                        <div class="filter-group">
+                            <select id="language-filter">
+                                <option value="">All Languages</option>
+                            </select>
+                            <select id="stars-filter">
+                                <option value="">All Stars</option>
+                                <option value="1">1+</option>
+                                <option value="10">10+</option>
+                                <option value="50">50+</option>
+                                <option value="100">100+</option>
+                            </select>
+                        </div>
+                        <div id="display-options" class="view-options">
+                            <button id="grid-view" class="view-btn" title="Grid View"><i class="fas fa-th"></i></button>
+                            <button id="list-view" class="view-btn selected-btn" title="List View"><i class="fas fa-list"></i></button>
+                        </div>
+                    </div>
+                    <div id="repos" class="list-view"></div>
+                    <div id="error-message" class="hidden">Failed to load data from GitHub API. Please try again later.</div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <div class="container">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <div class="contact-content">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <h3>Email</h3>
+                                    <p>renanpenhamarquette2006@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fab fa-linkedin"></i>
+                                <div>
+                                    <h3>LinkedIn</h3>
+                                    <p>linkedin.com/in/renan-penha-marquette</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fab fa-github"></i>
+                                <div>
+                                    <h3>Github</h3>
+                                    <p>github.com/MrCoffeeOri</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-form">
+                            <form id="contact-form">
+                                <div class="form-group">
+                                    <input type="text" id="user_name" name="user_name" placeholder="Your Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" id="user_email" name="user_email" placeholder="Your Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <textarea id="user_message" name="user_message" placeholder="Your Message" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
-        <script>
-            let allRepos = [];
 
-            fetch('https://api.github.com/users/MrCoffeeOri')
-                .then(response => response.json())
-                .then(data => {
-                    const profileInfo = document.getElementById('profile-info');
-                    profileInfo.innerHTML = `
-                        <img src="${data.avatar_url}" alt="Profile Image" class="profile-image">
-                        <h2>${data.name}</h2>
-                        <p>${data.bio}</p>
-                        <p><i class="fas fa-map-marker-alt"></i> ${data.location}</p>
-                        <p><i class="fas fa-book"></i> Public Repos: ${data.public_repos}</p>
-                        <p><i class="fas fa-users"></i> Followers: ${data.followers}</p>
-                        <p><i class="fas fa-user-friends"></i> Following: ${data.following}</p>
-                        <a href="${data.html_url}" target="_blank"><i class="fas fa-external-link-alt"></i> View GitHub Profile</a>
-                    `;
-                })
-                .catch(error => {
-                    console.error('Error fetching GitHub data:', error);
-                    document.getElementById('error-message').classList.remove('hidden');
-                });
-
-            fetch('https://api.github.com/users/MrCoffeeOri/repos')
-                .then(response => response.json())
-                .then(repos => {
-                    allRepos = repos;
-                    populateLanguageFilter(repos);
-                    displayRepos(repos);
-                })
-                .catch(error => {
-                    console.error('Error fetching repositories:', error);
-                    document.getElementById('error-message').classList.remove('hidden');
-                });
-
-            function populateLanguageFilter(repos) {
-                const languageFilter = document.getElementById('language-filter');
-                const languages = [...new Set(repos.map(repo => repo.language).filter(Boolean))];
-                languages.forEach(language => {
-                    const option = document.createElement('option');
-                    option.value = language;
-                    option.textContent = language;
-                    languageFilter.appendChild(option);
-                });
-            }
-
-            function displayRepos(repos) {
-                const reposContainer = document.getElementById('repos');
-                reposContainer.innerHTML = '<h2>Repositories</h2>';
-                repos.forEach(repo => {
-                    const repoDiv = document.createElement('div');
-                    repoDiv.classList.add('repo');
-                    repoDiv.innerHTML = `
-                        <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
-                        <p style="word-break: break-all;">${repo.description}</p>
-                        <p><i class="fas fa-code"></i> <strong>Language:</strong> ${repo.language}</p>
-                        <p><i class="fas fa-star"></i> <strong>Stars:</strong> ${repo.stargazers_count}</p>
-                        <p><i class="fas fa-code-branch"></i> <strong>Forks:</strong> ${repo.forks_count}</p>
-                        <p><i class="fas fa-clock"></i> <strong>Last Updated:</strong> ${new Date(repo.updated_at).toLocaleDateString()}</p>
-                        <div class="repo-details hidden"></div>
-                    `;
-                    repoDiv.addEventListener('click', () => showRepoDetails(repo.full_name, repoDiv));
-                    reposContainer.appendChild(repoDiv);
-                });
-            }
-
-            function showRepoDetails(repoFullName, repoDiv) {
-                const repoDetails = repoDiv.querySelector('.repo-details');
-                repoDetails.innerHTML = '<div class="loading">Loading...</div>';
-                repoDetails.classList.remove('hidden');
-
-                fetch(`https://api.github.com/repos/${repoFullName}`)
-                    .then(response => response.json())
-                    .then(repo => {
-                        repoDetails.innerHTML = `
-                            <p><i class="fas fa-calendar-alt"></i> <strong>Created At:</strong> ${new Date(repo.created_at).toLocaleDateString()}</p>
-                            <p><i class="fas fa-calendar-alt"></i> <strong>Pushed At:</strong> ${new Date(repo.pushed_at).toLocaleDateString()}</p>
-                            <p><i class="fas fa-code-branch"></i> <strong>Default Branch:</strong> ${repo.default_branch}</p>
-                            <p><i class="fas fa-exclamation-circle"></i> <strong>Open Issues:</strong> ${repo.open_issues_count}</p>
-                            <p><i class="fas fa-eye"></i> <strong>Watchers:</strong> ${repo.watchers_count}</p>
-                            <a href="${repo.html_url}" target="_blank"><i class="fas fa-external-link-alt"></i> View Repository on GitHub</a>
-                            <button class="close-btn" onclick="hideRepoDetails(event)">Close</button>
-                        `;
-                    })
-                    .catch(error => console.error('Error fetching repository details:', error));
-            }
-
-            function hideRepoDetails(event) {
-                event.stopPropagation();
-                const repoDetails = event.target.closest('.repo-details');
-                repoDetails.classList.add('hidden');
-                repoDetails.innerHTML = '';
-            }
-
-            document.getElementById('search-bar').addEventListener('input', filterRepos);
-            document.getElementById('language-filter').addEventListener('change', filterRepos);
-            document.getElementById('stars-filter').addEventListener('change', filterRepos);
-
-            function filterRepos() {
-                const searchQuery = document.getElementById('search-bar').value.toLowerCase();
-                const selectedLanguage = document.getElementById('language-filter').value;
-                const selectedStars = document.getElementById('stars-filter').value;
-
-                const filteredRepos = allRepos.filter(repo => {
-                    const matchesSearch = repo.name.toLowerCase().includes(searchQuery);
-                    const matchesLanguage = selectedLanguage ? repo.language === selectedLanguage : true;
-                    const matchesStars = selectedStars ? repo.stargazers_count >= selectedStars : true;
-                    return matchesSearch && matchesLanguage && matchesStars;
-                });
-
-                displayRepos(filteredRepos);
-            }
-
-            document.getElementById('grid-view').addEventListener('click', () => {
-                document.getElementById('repos').classList.remove('list-view');
-                document.getElementById('repos').classList.add('grid-view');
-            });
-
-            document.getElementById('list-view').addEventListener('click', () => {
-                document.getElementById('repos').classList.remove('grid-view');
-                document.getElementById('repos').classList.add('list-view');
-            });
-        </script>
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 Renan Penha. All rights reserved.</p>
+            </div>
+        </footer>
+        <div id="custom-alert" class="custom-alert">
+            <span class="custom-alert-close">&times;</span>
+            <span class="custom-alert-message"></span>
+            <div class="custom-alert-bar"></div>
+        </div>
     </body>
 </html>

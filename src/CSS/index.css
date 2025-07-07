@@ -1,14 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 
 @keyframes swapping {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
 canvas {
     z-index: -1;
     position: absolute;
     top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     display: block;
     background-color: rgb(19, 19, 19);
 }
@@ -27,6 +36,9 @@ canvas {
     height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
+    top: 0;
+    left: 0;
+    pointer-events: auto;
 }
 
 #messages > div { margin: 10px; }
@@ -34,10 +46,12 @@ canvas {
 span, input { color: rgb(10, 132, 10); }
 
 #pong {
-    top: 10%;
-    left: 28%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     border: 2px solid #0095DD;
-    background-color: #000;
+    z-index: 10;
 }
 
 #score {
@@ -48,4 +62,155 @@ span, input { color: rgb(10, 132, 10); }
     color: white;
     font-size: 24px;
     font-family: 'Inconsolata', monospace;
+}
+
+body::after {
+    content: '';
+    pointer-events: none;
+    position: fixed;
+    left: 0; top: 0; width: 100vw; height: 100vh;
+    z-index: 10;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,0,0,0) 0px,
+        rgba(0,0,0,0) 2px,
+        rgba(0,0,0,0.08) 4px,
+        rgba(0,0,0,0.12) 6px
+    );
+    mix-blend-mode: overlay;
+    animation: scanlines 1.2s linear infinite;
+}
+
+@keyframes scanlines {
+    0% { background-position-y: 0; }
+    100% { background-position-y: 6px; }
+}
+
+.glitch {
+    position: relative;
+    color: #fff !important;
+    text-shadow: 2px 0 #0ff, -2px 0 #f0f, 0 2px #fff !important;
+    animation: glitch 0.7s linear 1;
+    filter: brightness(2) contrast(2.5) blur(1.2px);
+    transform: skewX(4deg) scale(1.08);
+    opacity: 0.85;
+    z-index: 2;
+}
+
+@keyframes glitch {
+    0% { text-shadow: 2px 0 #0ff, -2px 0 #f0f, 0 2px #fff; filter: none; transform: none; opacity: 1; }
+    10% { text-shadow: 4px 0 #0ff, -4px 0 #f0f, 0 4px #fff; filter: blur(2px) brightness(2.5); transform: skewX(-6deg) scale(1.12); opacity: 0.7; }
+    20% { text-shadow: -4px 0 #0ff, 4px 0 #f0f, 0 -4px #fff; filter: blur(1.5px) brightness(2.2); transform: skewY(6deg) scale(1.1); opacity: 1; }
+    40% { text-shadow: 6px 2px #0ff, -6px -2px #f0f; filter: brightness(2.8) contrast(2.5); transform: skewY(-8deg) scale(1.13); opacity: 0.6; }
+    60% { text-shadow: -6px 2px #0ff, 6px -2px #f0f; filter: blur(2.5px); transform: skewX(8deg) scale(1.09); opacity: 1; }
+    80% { text-shadow: 0 0 #0ff, 0 0 #f0f; filter: none; transform: none; opacity: 0.8; }
+    100% { text-shadow: none; filter: none; transform: none; opacity: 1; }
+}
+
+#hacker-banner {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 20, 10, 0.98);
+    position: fixed;
+    top: 0; left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    pointer-events: auto;
+    transition: opacity 0.7s cubic-bezier(.4,2,.6,1), visibility 0.7s;
+    opacity: 1;
+    visibility: visible;
+}
+#hacker-banner.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+#messages, canvas {
+    opacity: 0;
+    transition: opacity 0.5s 0.2s;
+}
+#messages.visible, canvas.visible {
+    opacity: 1;
+}
+#hacker-banner pre { display: none; }
+
+.hacker-title {
+    font-family: 'Press Start 2P', 'VT323', 'Inconsolata', monospace;
+    font-size: 2.5vw;
+    color: #00ff41;
+    text-shadow: 0 0 16px #00ff41, 0 0 2px #fff, 0 0 32px #00ff41;
+    letter-spacing: 0.08em;
+    margin-bottom: 18px;
+    line-height: 1.1;
+    text-align: center;
+    user-select: none;
+    filter: contrast(1.2) brightness(1.1);
+}
+.hacker-subtitle {
+    font-family: 'Inconsolata', 'Fira Mono', 'Consolas', monospace;
+    font-size: 1.3rem;
+    color: #00ff41;
+    text-shadow: 0 0 8px #00ff41, 0 0 2px #fff;
+    margin-bottom: 18px;
+    text-align: center;
+    user-select: none;
+}
+
+.hacker-loadbar {
+    width: 60vw;
+    max-width: 480px;
+    height: 16px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #00ff41;
+    border-radius: 8px;
+    margin: 32px auto 12px auto;
+    box-shadow: 0 0 12px #00ff4144, 0 0 2px #fff2;
+    overflow: hidden;
+    position: relative;
+}
+.hacker-loadbar-inner {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00ff41 60%, #00b82e 100%);
+    box-shadow: 0 0 16px #00ff41, 0 0 2px #fff;
+    border-radius: 8px 0 0 8px;
+    transition: width 0.35s cubic-bezier(.4,2,.6,1);
+}
+.hacker-loadsteps {
+    font-family: 'Inconsolata', 'Fira Mono', 'Consolas', monospace;
+    color: #00ff41;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 8px;
+    min-height: 1.5em;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 6px #00ff41, 0 0 2px #fff;
+}
+
+body.theme-green span,
+body.theme-green input,
+body.theme-green #col,
+body.theme-green #messages,
+body.theme-green .hacker-title,
+body.theme-green .hacker-subtitle,
+body.theme-green .hacker-loadsteps {
+    color: #00ff41 !important;
+    text-shadow: 0 0 8px #00ff41, 0 0 2px #fff !important;
+}
+body.theme-amber span,
+body.theme-amber input,
+body.theme-amber #col,
+body.theme-amber #messages,
+body.theme-amber .hacker-title,
+body.theme-amber .hacker-subtitle,
+body.theme-amber .hacker-loadsteps {
+    color: #ffbf00 !important;
+    text-shadow: 0 0 8px #ffbf00, 0 0 2px #fff !important;
+}
+span, input, #col, #messages, .hacker-title, .hacker-subtitle, .hacker-loadsteps {
+    color: inherit;
+    text-shadow: inherit;
 }
