@@ -1,117 +1,45 @@
 let allRepos = [];
-const additionalStyles = `
-    .repo-meta {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-        margin-top: 1rem;
-        font-size: 0.9rem;
-        color: #666;
-    }
-    
-    .repo-meta span {
-        display: flex;
-        align-items: center;
-        gap: 0.25rem;
-    }
-    
-    .repo-details-content {
-        display: grid;
-        gap: 1rem;
-    }
-    
-    .detail-row {
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-    
-    .repo-actions {
-        display: flex;
-        gap: 1rem;
-        margin-top: 1rem;
-    }
-    
-    .no-repos {
-        text-align: center;
-        padding: 3rem;
-        color: #666;
-        font-size: 1.1rem;
-    }
-    
-    .error {
-        color: #dc3545;
-        text-align: center;
-        padding: 1rem;
-    }
-`;
-const styleSheet = document.createElement('style');
-const catGifs = [
-    'https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif', // classic cat computer
-    'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif', // cat typing
-    'https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif', // cat with laptop
-    'https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif', // cat at desk
-    'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeW5sZmhzbjhkZXlrN3Q4cWpqOWdzZWlibmtlajZlanVpZHg3eGNidiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VbnUQpnihPSIgIXuZv/giphy.gif' // cat with monitor
-];
 
-function renderProfileImage(url) {
-    const profileInfo = document.getElementById('profile-info');
-    if (!profileInfo) return;
-    const old = profileInfo.querySelector('.profile-image-container');
-    if (old) old.remove();
-    const container = document.createElement('div');
-    container.className = 'profile-image-container';
-    const inner = document.createElement('div');
-    inner.className = 'profile-image-inner';
-    const front = document.createElement('div');
-    front.className = 'profile-image-front';
-    const back = document.createElement('div');
-    back.className = 'profile-image-back';
-    const imgFront = document.createElement('img');
-    imgFront.src = url;
-    imgFront.alt = 'Profile Image';
-    front.appendChild(imgFront);
-    const imgBack = document.createElement('img');
-    imgBack.src = catGifs[Math.floor(Math.random() * catGifs.length)];
-    imgBack.alt = 'Cat Gif';
-    back.appendChild(imgBack);
-    inner.appendChild(front);
-    inner.appendChild(back);
-    container.appendChild(inner);
-    profileInfo.prepend(container);
-
-    let isFlipped = false;
-    let resetTimeout;
-    inner.addEventListener('mousemove', e => {
-        if (isFlipped) return;
-        const rect = inner.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const skewX = -((x - centerX) / centerX) * 20; // max 10deg
-        const skewY = ((y - centerY) / centerY) * -20;
-        inner.classList.add('skewing');
-        inner.style.transform = `skewY(${skewX}deg) skewX(${skewY}deg)`;
-        clearTimeout(resetTimeout);
-    });
-    inner.addEventListener('mouseleave', () => {
-        if (isFlipped) return;
-        inner.classList.remove('skewing');
-        inner.style.transform = '';
-    });
-    container.addEventListener('click', () => {
-        isFlipped = !isFlipped;
-        if (isFlipped) {
-            container.classList.add('profile-image-flipped');
-            inner.style.transform = 'rotateY(180deg)';
-        } else {
-            container.classList.remove('profile-image-flipped');
-            inner.style.transform = '';
+fetch('https://api.github.com/users/MrCoffeeOri')
+    .then(response => response.json())
+    .then(data => {
+        renderProfileImage(data.avatar_url);
+        
+        // Update location in about section
+        const locationElement = document.getElementById('location');
+        if (locationElement) {
+            locationElement.textContent = data.location || 'Location not specified';
         }
+        
+        // Update stats in about section
+        document.getElementById('public-repos').textContent = data.public_repos || 0;
+        document.getElementById('followers').textContent = data.followers || 0;
+    })
+    .catch(error => {
+        console.error('Error fetching GitHub data:', error);
+        document.getElementById('error-message').classList.remove('hidden');
     });
-}
+
+fetch('https://api.github.com/users/MrCoffeeOri/repos')
+    .then(response => response.json())
+    .then(repos => {
+        allRepos = repos;
+        const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+        document.getElementById('total-stars').textContent = totalStars;
+        const languageFilter = document.getElementById('language-filter');
+        const languages = [...new Set(repos.map(repo => repo.language).filter(Boolean))];
+        languages.forEach(language => {
+            const option = document.createElement('option');
+            option.value = language;
+            option.textContent = language;
+            languageFilter.appendChild(option);
+        });
+        displayRepos(repos);
+    })
+    .catch(error => {
+        console.error('Error fetching repositories:', error);
+        document.getElementById('error-message').classList.remove('hidden');
+    });
 
 function displayRepos(repos) {
     const reposContainer = document.getElementById('repos');
@@ -203,10 +131,15 @@ function hideRepoDetails(event) {
     repoDetails.innerHTML = '';
 }
 
+document.getElementById('search-bar').addEventListener('input', filterRepos);
+document.getElementById('language-filter').addEventListener('change', filterRepos);
+document.getElementById('stars-filter').addEventListener('change', filterRepos);
+
 function filterRepos() {
     const searchQuery = document.getElementById('search-bar').value.toLowerCase();
     const selectedLanguage = document.getElementById('language-filter').value;
     const selectedStars = document.getElementById('stars-filter').value;
+
     const filteredRepos = allRepos.filter(repo => {
         const matchesSearch = repo.name.toLowerCase().includes(searchQuery) || 
                             (repo.description && repo.description.toLowerCase().includes(searchQuery));
@@ -214,84 +147,9 @@ function filterRepos() {
         const matchesStars = selectedStars ? repo.stargazers_count >= parseInt(selectedStars) : true;
         return matchesSearch && matchesLanguage && matchesStars;
     });
+
     displayRepos(filteredRepos);
 }
-
-function showCustomAlert(message, duration = 2500) {
-    const alertBox = document.getElementById('custom-alert');
-    const alertMsg = alertBox.querySelector('.custom-alert-message');
-    const alertBar = alertBox.querySelector('.custom-alert-bar');
-    const closeBtn = alertBox.querySelector('.custom-alert-close');
-    if (!alertBox || !alertMsg || !alertBar || !closeBtn) return;
-
-    alertMsg.innerHTML = message;
-    alertBox.classList.add('show');
-    alertBar.style.transition = 'none';
-    alertBar.style.width = '100%';
-    void alertBar.offsetWidth;
-    alertBar.style.transition = `width ${duration}ms linear`;
-    alertBar.style.width = '0%';
-    closeBtn.onclick = null;
-    clearTimeout(alertBox._timeout);
-    alertBox._timeout = setTimeout(() => {
-        alertBox.classList.remove('show');
-    }, duration);
-    closeBtn.onclick = () => {
-        clearTimeout(alertBox._timeout);
-        alertBox.classList.remove('show');
-        alertBar.style.transition = 'none';
-        alertBar.style.width = '0%';
-    };
-}
-
-styleSheet.textContent = additionalStyles;
-document.head.appendChild(styleSheet);
-
-emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
-
-fetch('https://api.github.com/users/MrCoffeeOri')
-    .then(response => response.json())
-    .then(data => {
-        renderProfileImage(data.avatar_url);
-        
-        // Update location in about section
-        const locationElement = document.getElementById('location');
-        if (locationElement) {
-            locationElement.textContent = data.location || 'Location not specified';
-        }
-        
-        // Update stats in about section
-        document.getElementById('public-repos').textContent = data.public_repos || 0;
-        document.getElementById('followers').textContent = data.followers || 0;
-    })
-    .catch(error => {
-        console.error('Error fetching GitHub data:', error);
-        document.getElementById('error-message').classList.remove('hidden');
-    });
-fetch('https://api.github.com/users/MrCoffeeOri/repos')
-    .then(response => response.json())
-    .then(repos => {
-        allRepos = repos;
-        const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
-        document.getElementById('total-stars').textContent = totalStars;
-        const languageFilter = document.getElementById('language-filter');
-        const languages = [...new Set(repos.map(repo => repo.language).filter(Boolean))];
-        languages.forEach(language => {
-            const option = document.createElement('option');
-            option.value = language;
-            option.textContent = language;
-            languageFilter.appendChild(option);
-        });
-        displayRepos(repos);
-    })
-    .catch(error => {
-        console.error('Error fetching repositories:', error);
-        document.getElementById('error-message').classList.remove('hidden');
-    });
-
-document.getElementById('search-bar').addEventListener('input', filterRepos);
-document.getElementById('language-filter').addEventListener('change', filterRepos);
-document.getElementById('stars-filter').addEventListener('change', filterRepos);
 
 document.getElementById('grid-view').addEventListener('click', () => {
     const reposContainer = document.getElementById('repos');
@@ -321,6 +179,37 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+function showCustomAlert(message, duration = 2500) {
+    const alertBox = document.getElementById('custom-alert');
+    const alertMsg = alertBox.querySelector('.custom-alert-message');
+    const alertBar = alertBox.querySelector('.custom-alert-bar');
+    const closeBtn = alertBox.querySelector('.custom-alert-close');
+    if (!alertBox || !alertMsg || !alertBar || !closeBtn) return;
+
+    alertMsg.innerHTML = message;
+    alertBox.classList.add('show');
+    alertBar.style.transition = 'none';
+    alertBar.style.width = '100%';
+    void alertBar.offsetWidth;
+    alertBar.style.transition = `width ${duration}ms linear`;
+    alertBar.style.width = '0%';
+    closeBtn.onclick = null;
+    clearTimeout(alertBox._timeout);
+    alertBox._timeout = setTimeout(() => {
+        alertBox.classList.remove('show');
+    }, duration);
+    closeBtn.onclick = () => {
+        clearTimeout(alertBox._timeout);
+        alertBox.classList.remove('show');
+        alertBar.style.transition = 'none';
+        alertBar.style.width = '0%';
+    };
+}
+
+(function() {
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+})();
 
 document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -362,3 +251,121 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
             submitBtn.disabled = false;
         });
 });
+
+const additionalStyles = `
+    .repo-meta {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        color: #666;
+    }
+    
+    .repo-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+    
+    .repo-details-content {
+        display: grid;
+        gap: 1rem;
+    }
+    
+    .detail-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .repo-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .no-repos {
+        text-align: center;
+        padding: 3rem;
+        color: #666;
+        font-size: 1.1rem;
+    }
+    
+    .error {
+        color: #dc3545;
+        text-align: center;
+        padding: 1rem;
+    }
+`;
+
+const styleSheet = document.createElement('style');
+styleSheet.textContent = additionalStyles;
+document.head.appendChild(styleSheet);
+
+const catGifs = [
+    'https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif', // classic cat computer
+    'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif', // cat typing
+    'https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif', // cat with laptop
+    'https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif', // cat at desk
+    'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeW5sZmhzbjhkZXlrN3Q4cWpqOWdzZWlibmtlajZlanVpZHg3eGNidiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VbnUQpnihPSIgIXuZv/giphy.gif' // cat with monitor
+];
+
+function renderProfileImage(url) {
+    const profileInfo = document.getElementById('profile-info');
+    if (!profileInfo) return;
+    const old = profileInfo.querySelector('.profile-image-container');
+    if (old) old.remove();
+    const container = document.createElement('div');
+    container.className = 'profile-image-container';
+    const inner = document.createElement('div');
+    inner.className = 'profile-image-inner';
+    const front = document.createElement('div');
+    front.className = 'profile-image-front';
+    const back = document.createElement('div');
+    back.className = 'profile-image-back';
+    const imgFront = document.createElement('img');
+    imgFront.src = url;
+    imgFront.alt = 'Profile Image';
+    front.appendChild(imgFront);
+    const imgBack = document.createElement('img');
+    imgBack.src = catGifs[Math.floor(Math.random() * catGifs.length)];
+    imgBack.alt = 'Cat Gif';
+    back.appendChild(imgBack);
+    inner.appendChild(front);
+    inner.appendChild(back);
+    container.appendChild(inner);
+    profileInfo.prepend(container);
+
+    let isFlipped = false;
+    let resetTimeout;
+    inner.addEventListener('mousemove', e => {
+        if (isFlipped) return;
+        const rect = inner.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const skewX = -((x - centerX) / centerX) * 20; // max 10deg
+        const skewY = ((y - centerY) / centerY) * -20;
+        inner.classList.add('skewing');
+        inner.style.transform = `skewY(${skewX}deg) skewX(${skewY}deg)`;
+        clearTimeout(resetTimeout);
+    });
+    inner.addEventListener('mouseleave', () => {
+        if (isFlipped) return;
+        inner.classList.remove('skewing');
+        inner.style.transform = '';
+    });
+    container.addEventListener('click', () => {
+        isFlipped = !isFlipped;
+        if (isFlipped) {
+            container.classList.add('profile-image-flipped');
+            inner.style.transform = 'rotateY(180deg)';
+        } else {
+            container.classList.remove('profile-image-flipped');
+            inner.style.transform = '';
+        }
+    });
+}
