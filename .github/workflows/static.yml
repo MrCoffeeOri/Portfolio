@@ -36,6 +36,7 @@ jobs:
       - name: Create config with environment variables
         run: |
           cat > src/config.js << EOF
+<<<<<<< HEAD
             const EMAILJS_CONFIG = {
                 PUBLIC_KEY: '${{ secrets.PUBLIC_KEY }}',
                 SERVICE_ID: '${{ secrets.SERVICE_ID }}',
@@ -46,6 +47,18 @@ jobs:
             } else {
                 window.EMAILJS_CONFIG = EMAILJS_CONFIG;
             }
+=======
+          const EMAILJS_CONFIG = {
+              PUBLIC_KEY: '${{ secrets.PUBLIC_KEY }}',
+              SERVICE_ID: '${{ secrets.SERVICE_ID }}',
+              TEMPLATE_ID: '${{ secrets.TEMPLATE_ID }}'
+          };
+          if (typeof module !== 'undefined' && module.exports) {
+              module.exports = EMAILJS_CONFIG;
+          } else {
+              window.EMAILJS_CONFIG = EMAILJS_CONFIG;
+          }
+>>>>>>> 9bacd66519b4292b1c78dac76908864dd9d24002
           EOF
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
