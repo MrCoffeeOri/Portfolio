@@ -1,26 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="icon" href="https://img.icons8.com/ios/452/portfolio.png" type="image/icon type">
+        <link rel="icon" href="https://img.icons8.com/ios/452/portfolio.png" type="image/png">
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Renan Penha's portfolio as a hacker terminal: type commands to explore projects, skills and more.">
         <link rel="stylesheet" href="CSS/index.css">
         <link rel="stylesheet" href="CSS/settings.css">
         <script src="script/background.js" defer></script>
         <script src="script/terminal.js" defer></script>
-        <title>Renan's Portfolio</title>
+        <title>Renan's Portfolio · Terminal</title>
     </head>
-    <body>
+    <body class="theme-green">
         <div id="hacker-banner">
             <div class="hacker-title"></div>
             <div class="hacker-subtitle"></div>
             <div class="hacker-loadbar"><div class="hacker-loadbar-inner"></div></div>
             <div class="hacker-loadsteps"></div>
         </div>
-        <div id="messages">
-            <div><span>C:\Users\MrCoffee></span><span></span><div id="col"></div></div>
-        </div>
         <canvas></canvas>
+
+        <div class="term-shell">
+            <section class="term-window" aria-label="Terminal">
+                <header class="term-titlebar">
+                    <div class="term-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                    <div class="term-title">renan@portfolio: ~</div>
+                    <div class="term-actions">
+                        <button id="term-lang" class="term-btn" type="button" data-t-title="ui.lang">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+                            <span id="term-lang-label">EN</span>
+                        </button>
+                        <button id="term-theme" class="term-btn" type="button" data-t-title="ui.theme">
+                            <span class="term-swatch" aria-hidden="true"></span>
+                            <span id="term-theme-label">green</span>
+                        </button>
+                        <button id="term-matrix" class="term-btn" type="button" data-t-title="ui.matrix" aria-pressed="true">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v6M6 13v2M12 3v2M12 9v8M18 3v10M18 17v4M6 19v2"/></svg>
+                            <span>matrix</span>
+                        </button>
+                        <a href="interface.html" class="term-btn term-btn-accent" data-t-title="ui.web">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>
+                            <span>web</span>
+                        </a>
+                    </div>
+                </header>
+                <div id="messages">
+                    <div><span>C:\Users\MrCoffee></span><span></span><div id="col"></div></div>
+                </div>
+            </section>
+            <nav class="term-quick" data-t-title="ui.quick">
+                <button type="button" class="term-chip" data-command="!help">!help</button>
+                <button type="button" class="term-chip" data-command="!myHistory">!myHistory</button>
+                <button type="button" class="term-chip" data-command="!know">!know</button>
+                <button type="button" class="term-chip" data-command="!repos">!repos</button>
+                <button type="button" class="term-chip" data-command="!info">!info</button>
+                <button type="button" class="term-chip" data-command="!date">!date</button>
+                <button type="button" class="term-chip" data-command="!clear">!clear</button>
+            </nav>
+        </div>
     </body>
 </html>

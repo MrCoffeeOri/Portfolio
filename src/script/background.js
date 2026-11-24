@@ -1,34 +1,24 @@
 const ctx = document.querySelector("canvas").getContext("2d")
-const randBetween = (max, min) => Math.random() * (max - min + 1) + min
-let objs = []
-
-for (let i = 0; i < randBetween(20, 9); i++)
-    objs.push({
-        position: { x: randBetween(innerWidth - 250, 250), y: randBetween(innerHeight - 250, 250) },
-        velocity: { x: randBetween(1, -1), y: randBetween(1, -1) },
-        size: randBetween(7, 5)
-    })
 
 // Matrix Rain Effect
-const matrixCanvas = ctx.canvas;
-const matrixCtx = ctx;
 const matrixFontSize = 24;
-let matrixColumns = Math.floor(window.innerWidth / matrixFontSize * 2.5);
+const matrixTrailLength = 10;
 const matrixChars = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&*'.split('');
+const randomMatrixChar = () => matrixChars[Math.floor(Math.random() * matrixChars.length)];
 let matrixDrops = [];
 let matrixColumnChars = [];
+let matrixHeadColor = '#b6ff00';
+let matrixBodyColor = '#00ff41';
 
 function initMatrix() {
-    matrixColumns = Math.floor(window.innerWidth / matrixFontSize * 2.5);
+    // One column per glyph slot: columns are drawn at i * matrixFontSize,
+    // so anything beyond innerWidth / matrixFontSize would be off-screen.
+    const matrixColumns = Math.ceil(window.innerWidth / matrixFontSize);
     matrixDrops = [];
     matrixColumnChars = [];
     for (let x = 0; x < matrixColumns; x++) {
         matrixDrops[x] = Math.random() * window.innerHeight / matrixFontSize;
-        // Initialize each column with 10 characters
-        matrixColumnChars[x] = [];
-        for (let i = 0; i < 10; i++) {
-            matrixColumnChars[x].push(matrixChars[Math.floor(Math.random() * matrixChars.length)]);
-        }
+        matrixColumnChars[x] = Array.from({ length: matrixTrailLength }, randomMatrixChar);
     }
 }
 
@@ -37,36 +27,38 @@ window.setMatrixEnabled = function(enabled) {
 };
 window._matrixEnabled = true;
 
+// Called by the terminal theme switcher
+window.setMatrixColors = function(headColor, bodyColor) {
+    matrixHeadColor = headColor;
+    matrixBodyColor = bodyColor;
+};
+
 function drawMatrix() {
-    if (!window._matrixEnabled) return;
-    matrixCtx.fillStyle = 'rgba(19,19,19,0.18)';
-    matrixCtx.fillRect(0, 0, window.innerWidth, window.innerHeight);
-    matrixCtx.font = `bold ${matrixFontSize}px Inconsolata, monospace`;
-    
+    ctx.font = `bold ${matrixFontSize}px Inconsolata, monospace`;
+    ctx.shadowColor = matrixBodyColor;
+
     for (let i = 0; i < matrixDrops.length; i++) {
-        for (let j = 0; j < 10; j++) {
+        for (let j = 0; j < matrixTrailLength; j++) {
             const yPos = (matrixDrops[i] - j) * matrixFontSize;
             if (yPos > -matrixFontSize && yPos < window.innerHeight) {
-                const char = matrixColumnChars[i][j];
-                matrixCtx.fillStyle = j === 0 ? '#b6ff00' : '#00ff41'; // First character is brighter
-                matrixCtx.globalAlpha = j === 0 ? 1.0 : Math.max(0.1, 1.0 - j * 0.1); // Fade effect
-                matrixCtx.shadowColor = '#00ff41';
-                matrixCtx.shadowBlur = j === 0 ? 8 : 4;
-                matrixCtx.fillText(char, i * matrixFontSize, yPos);
-                matrixCtx.shadowBlur = 0;
+                ctx.fillStyle = j === 0 ? matrixHeadColor : matrixBodyColor; // First character is brighter
+                ctx.globalAlpha = j === 0 ? 1.0 : Math.max(0.1, 1.0 - j * 0.1); // Fade effect
+                ctx.shadowBlur = j === 0 ? 8 : 4;
+                ctx.fillText(matrixColumnChars[i][j], i * matrixFontSize, yPos);
             }
         }
-        
+
         // Reset column when it goes off screen
         if (matrixDrops[i] * matrixFontSize > window.innerHeight + 100 && Math.random() > 0.975) {
             matrixDrops[i] = 0;
-            // Generate new characters for this column
-            for (let j = 0; j < 10; j++) {
-                matrixColumnChars[i][j] = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-            }
+            matrixColumnChars[i] = Array.from({ length: matrixTrailLength }, randomMatrixChar);
         }
         matrixDrops[i] += 0.1 + Math.random() * 0.05;
     }
+
+    // Reset state so it does not leak into the next frame
+    ctx.globalAlpha = 1;
+    ctx.shadowBlur = 0;
 }
 
 Resize()
@@ -74,11 +66,8 @@ addEventListener("resize", () => Resize())
 requestAnimationFrame(Tick)
 
 function Tick() {
-    if (window._matrixEnabled) {
-        ctx.clearRect(0, 0, innerWidth, innerHeight);
-        drawMatrix();
-    } else
-        ctx.clearRect(0, 0, innerWidth, innerHeight);
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    if (window._matrixEnabled) drawMatrix();
     requestAnimationFrame(Tick)
 }
 
